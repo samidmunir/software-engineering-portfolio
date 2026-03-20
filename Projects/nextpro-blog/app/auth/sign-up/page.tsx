@@ -1,3 +1,5 @@
+"use client";
+
 import { signUpSchema } from "@/app/schemas/auth";
 import {
   Card,
@@ -25,6 +27,7 @@ export default function SignUpPage() {
       password: "",
     },
   });
+
   return (
     <Card>
       <CardHeader>
