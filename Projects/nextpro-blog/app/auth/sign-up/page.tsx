@@ -29,6 +29,10 @@ export default function SignUpPage() {
     },
   });
 
+  function onSubmit() {
+    console.log("onSubmit() called...");
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -36,7 +40,7 @@ export default function SignUpPage() {
         <CardDescription>Create an account to get started</CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup className="gap-y-4">
             <Controller
               name="name"
@@ -44,7 +48,12 @@ export default function SignUpPage() {
               render={({ field, fieldState }) => (
                 <Field>
                   <FieldLabel>Full Name</FieldLabel>
-                  <Input placeholder="John Doe" {...field} type="text" />
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="John Doe"
+                    {...field}
+                    type="text"
+                  />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -58,6 +67,7 @@ export default function SignUpPage() {
                 <Field>
                   <FieldLabel>Email</FieldLabel>
                   <Input
+                    aria-invalid={fieldState.invalid}
                     placeholder="johndoe@email.com"
                     {...field}
                     type="email"
@@ -74,7 +84,12 @@ export default function SignUpPage() {
               render={({ field, fieldState }) => (
                 <Field>
                   <FieldLabel>Password</FieldLabel>
-                  <Input placeholder="*****" {...field} type="password" />
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="*****"
+                    {...field}
+                    type="password"
+                  />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
